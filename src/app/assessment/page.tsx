@@ -5,11 +5,13 @@ import { useRouter } from "next/navigation";
 import { Question, Answer } from "@/types";
 import { getAuth, getUserData, saveUserData } from "@/lib/storage";
 import questionsData from "@/data/questions.json";
+import demoQuestionIds from "@/data/demoQuestionIds.json";
 import ProgressBar from "@/components/ProgressBar";
 import AreaTabs from "@/components/AreaTabs";
 import QuestionCard from "@/components/QuestionCard";
 
-const questions = questionsData as Question[];
+const allQuestions = questionsData as Question[];
+const demoIds = new Set(demoQuestionIds as number[]);
 const AREAS = ["환경", "사회", "거버넌스"];
 
 function groupByTopic(qs: Question[]): Record<string, Question[]> {
@@ -27,6 +29,7 @@ export default function AssessmentPage() {
   const [activeArea, setActiveArea] = useState("환경");
   const [answers, setAnswers] = useState<Record<number, Answer>>({});
   const [saved, setSaved] = useState(false);
+  const [questions, setQuestions] = useState<Question[]>(allQuestions);
   const topRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,6 +41,9 @@ export default function AssessmentPage() {
     const data = getUserData();
     if (data?.answers) {
       setAnswers(data.answers);
+    }
+    if (data?.mode === "demo") {
+      setQuestions(allQuestions.filter((q) => demoIds.has(q.id)));
     }
     setAuthorized(true);
   }, [router]);

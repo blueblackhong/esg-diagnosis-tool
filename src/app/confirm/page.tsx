@@ -5,13 +5,16 @@ import { useRouter } from "next/navigation";
 import { Question, Answer } from "@/types";
 import { getAuth, getUserData, saveUserData } from "@/lib/storage";
 import questionsData from "@/data/questions.json";
+import demoQuestionIds from "@/data/demoQuestionIds.json";
 
-const questions = questionsData as Question[];
+const allQuestions = questionsData as Question[];
+const demoIds = new Set(demoQuestionIds as number[]);
 
 export default function ConfirmPage() {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
   const [answers, setAnswers] = useState<Record<number, Answer>>({});
+  const [questions, setQuestions] = useState<Question[]>(allQuestions);
 
   useEffect(() => {
     const auth = getAuth();
@@ -22,6 +25,9 @@ export default function ConfirmPage() {
     const data = getUserData();
     if (data?.answers) {
       setAnswers(data.answers);
+    }
+    if (data?.mode === "demo") {
+      setQuestions(allQuestions.filter((q) => demoIds.has(q.id)));
     }
     setAuthorized(true);
   }, [router]);

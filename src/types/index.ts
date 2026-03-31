@@ -23,9 +23,12 @@ export interface Answer {
   comment: string;
 }
 
+export type DiagnosisMode = "full" | "demo";
+
 export interface UserData {
   user: string;
   companyName: string;
+  mode: DiagnosisMode;
   startedAt: string;
   answers: Record<number, Answer>;
   status: "in_progress" | "submitted";

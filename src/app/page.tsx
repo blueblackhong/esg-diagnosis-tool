@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { authenticate } from "@/lib/auth";
-import { setAuth, initUserData } from "@/lib/storage";
+import { setAuth } from "@/lib/storage";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -23,7 +23,6 @@ export default function LoginPage() {
       return;
     }
     setAuth(id, result.role);
-    initUserData(id);
     router.push("/guide");
   };
 

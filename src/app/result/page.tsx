@@ -8,12 +8,14 @@ import { calculatePerspectiveScores, calculateOverallScore } from "@/lib/scoring
 import { getInsight } from "@/lib/insights";
 import questionsData from "@/data/questions.json";
 import perspectivesData from "@/data/perspectives.json";
+import demoPerspectivesData from "@/data/demoPerspectives.json";
 import dynamic from "next/dynamic";
 
 const RadarChart = dynamic(() => import("@/components/RadarChart"), { ssr: false });
 
-const questions = questionsData as Question[];
-const perspectives = perspectivesData as Perspective[];
+const allQuestions = questionsData as Question[];
+const fullPerspectives = perspectivesData as Perspective[];
+const demoPerspectives = demoPerspectivesData as Perspective[];
 
 const SCORE_COLORS: Record<string, string> = {
   product: "bg-green-500",
@@ -42,7 +44,8 @@ export default function ResultPage() {
       return;
     }
 
-    const ps = calculatePerspectiveScores(questions, perspectives, data.answers);
+    const perspectives = data.mode === "demo" ? demoPerspectives : fullPerspectives;
+    const ps = calculatePerspectiveScores(allQuestions, perspectives, data.answers);
     setScores(ps);
     setOverall(calculateOverallScore(ps));
     setSubmittedAt(

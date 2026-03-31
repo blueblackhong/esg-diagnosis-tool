@@ -2,11 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getAuth } from "@/lib/storage";
+import { getAuth, initUserData } from "@/lib/storage";
+import { DiagnosisMode } from "@/types";
 
 export default function GuidePage() {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     const auth = getAuth();
@@ -14,8 +16,14 @@ export default function GuidePage() {
       router.replace("/");
       return;
     }
+    setUserName(auth.user);
     setAuthorized(true);
   }, [router]);
+
+  const handleStart = (mode: DiagnosisMode) => {
+    initUserData(userName, mode);
+    router.push("/assessment");
+  };
 
   if (!authorized) return null;
 
@@ -81,12 +89,22 @@ export default function GuidePage() {
             </p>
           </section>
 
-          <button
-            onClick={() => router.push("/assessment")}
-            className="w-full py-4 bg-emerald-600 text-white font-semibold rounded-xl hover:bg-emerald-700 transition shadow-lg text-lg"
-          >
-            진단 시작하기
-          </button>
+          <div className="grid md:grid-cols-2 gap-4">
+            <button
+              onClick={() => handleStart("demo")}
+              className="py-5 bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-600 transition shadow-lg"
+            >
+              <div className="text-lg">데모 버전</div>
+              <div className="text-sm text-amber-100 mt-1">E·S·G 각 5문항 (총 15문항)</div>
+            </button>
+            <button
+              onClick={() => handleStart("full")}
+              className="py-5 bg-emerald-600 text-white font-semibold rounded-xl hover:bg-emerald-700 transition shadow-lg"
+            >
+              <div className="text-lg">풀 버전</div>
+              <div className="text-sm text-emerald-100 mt-1">전체 98문항</div>
+            </button>
+          </div>
         </div>
       </div>
     </div>

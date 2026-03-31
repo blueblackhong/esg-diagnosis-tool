@@ -1,0 +1,37 @@
+[
+  {
+    "id": "product",
+    "name": "제품부문",
+    "label": "제품부문 경쟁력",
+    "questionIds": [1, 5],
+    "weakTopicHint": "친환경 제품 분류체계 및 온실가스 감축 목표 수립"
+  },
+  {
+    "id": "process",
+    "name": "프로세스부문",
+    "label": "프로세스부문 경쟁력",
+    "questionIds": [11, 13],
+    "weakTopicHint": "폐기물 감축 목표 관리 및 대기오염물질 관리 절차"
+  },
+  {
+    "id": "organization",
+    "name": "조직부문",
+    "label": "조직부문 경쟁력",
+    "questionIds": [30, 44, 48],
+    "weakTopicHint": "환경경영 체계 고도화 및 고용·복리후생 제도 내실화"
+  },
+  {
+    "id": "supplychain",
+    "name": "공급망 관점",
+    "label": "공급망 관점 경쟁력",
+    "questionIds": [64],
+    "weakTopicHint": "지속가능 조달 정책 및 공정거래 내부 통제"
+  },
+  {
+    "id": "community",
+    "name": "지역사회 관점",
+    "label": "지역사회 관점 경쟁력",
+    "questionIds": [37, 42, 88, 90, 93, 94, 97],
+    "weakTopicHint": "인권정책 내실화 및 안전보건 경영시스템 고도화"
+  }
+]

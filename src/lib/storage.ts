@@ -1,4 +1,4 @@
-import { UserData, Answer } from "@/types";
+import { UserData, Answer, DiagnosisMode } from "@/types";
 
 const STORAGE_KEY = "esg_diagnosis_data";
 const AUTH_KEY = "esg_auth";
@@ -27,14 +27,15 @@ export function saveUserData(data: UserData) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-export function initUserData(user: string): UserData {
+export function initUserData(user: string, mode: DiagnosisMode = "full"): UserData {
   const existing = getUserData();
-  if (existing && existing.user === user && existing.status === "in_progress") {
+  if (existing && existing.user === user && existing.status === "in_progress" && existing.mode === mode) {
     return existing;
   }
   const data: UserData = {
     user,
     companyName: "",
+    mode,
     startedAt: new Date().toISOString(),
     answers: {},
     status: "in_progress",
