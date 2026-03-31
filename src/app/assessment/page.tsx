@@ -163,19 +163,47 @@ export default function AssessmentPage() {
 
       {/* Bottom Bar */}
       <div className="sticky bottom-0 bg-white border-t border-gray-200 shadow-lg">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+          <button
+            onClick={() => {
+              const idx = AREAS.indexOf(activeArea);
+              if (idx > 0) handleAreaChange(AREAS[idx - 1]);
+            }}
+            disabled={activeArea === AREAS[0]}
+            className={`px-6 py-3 font-medium rounded-xl transition ${
+              activeArea === AREAS[0]
+                ? "bg-gray-100 text-gray-300 cursor-not-allowed"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            }`}
+          >
+            &larr; 이전
+          </button>
+
           <button
             onClick={handleSave}
-            className="px-6 py-3 bg-gray-100 text-gray-700 font-medium rounded-xl hover:bg-gray-200 transition"
+            className="px-5 py-3 bg-gray-100 text-gray-700 font-medium rounded-xl hover:bg-gray-200 transition text-sm"
           >
             {saved ? "저장됨!" : "임시저장"}
           </button>
-          <button
-            onClick={handleSubmit}
-            className="px-8 py-3 bg-emerald-600 text-white font-semibold rounded-xl hover:bg-emerald-700 transition shadow-md"
-          >
-            제출하기 &rarr;
-          </button>
+
+          {activeArea === AREAS[AREAS.length - 1] ? (
+            <button
+              onClick={handleSubmit}
+              className="px-6 py-3 bg-emerald-600 text-white font-semibold rounded-xl hover:bg-emerald-700 transition shadow-md"
+            >
+              제출하기 &rarr;
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                const idx = AREAS.indexOf(activeArea);
+                handleAreaChange(AREAS[idx + 1]);
+              }}
+              className="px-6 py-3 bg-emerald-600 text-white font-semibold rounded-xl hover:bg-emerald-700 transition shadow-md"
+            >
+              다음 &rarr;
+            </button>
+          )}
         </div>
       </div>
     </div>
