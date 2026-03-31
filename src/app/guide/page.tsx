@@ -89,7 +89,7 @@ export default function GuidePage() {
             </p>
           </section>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
             <button
               onClick={() => handleStart("demo")}
               className="py-5 bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-600 transition shadow-lg"
@@ -105,6 +105,13 @@ export default function GuidePage() {
               <div className="text-sm text-emerald-100 mt-1">전체 98문항</div>
             </button>
           </div>
+
+          <button
+            onClick={() => router.push("/sample-result")}
+            className="w-full py-3 bg-white border-2 border-gray-200 text-gray-600 font-medium rounded-xl hover:bg-gray-50 hover:border-gray-300 transition"
+          >
+            결과 화면 미리보기 (샘플 데이터)
+          </button>
         </div>
       </div>
     </div>
