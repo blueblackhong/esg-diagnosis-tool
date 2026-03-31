@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getAuth, initUserData } from "@/lib/storage";
 import { DiagnosisMode } from "@/types";
+import Header from "@/components/Header";
 
 export default function GuidePage() {
   const router = useRouter();
@@ -28,8 +29,9 @@ export default function GuidePage() {
   if (!authorized) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-10 px-4">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 px-4">
+      <Header />
+      <div className="max-w-3xl mx-auto pb-10">
         <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
           <h1 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
             <span className="inline-flex items-center justify-center w-10 h-10 bg-emerald-100 rounded-full">

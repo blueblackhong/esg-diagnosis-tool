@@ -34,13 +34,19 @@ export default function LoginPage() {
           <Image
             src="/logo-ey.png"
             alt="EY한영 로고"
-            width={160}
-            height={48}
+            width={100}
+            height={30}
             className="mx-auto mb-4"
             priority
           />
           <h1 className="text-2xl font-bold text-gray-900">중소기업 ESG 수준진단 Tool</h1>
-          <p className="text-gray-500 mt-2 text-sm">중소기업중앙회</p>
+          <Image
+            src="/logo-kbiz.svg"
+            alt="중소기업중앙회 로고"
+            width={140}
+            height={32}
+            className="mx-auto mt-2"
+          />
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">

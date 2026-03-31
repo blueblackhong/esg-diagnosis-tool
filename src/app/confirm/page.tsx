@@ -6,6 +6,7 @@ import { Question, Answer } from "@/types";
 import { getAuth, getUserData, saveUserData } from "@/lib/storage";
 import questionsData from "@/data/questions.json";
 import demoQuestionIds from "@/data/demoQuestionIds.json";
+import Header from "@/components/Header";
 
 const allQuestions = questionsData as Question[];
 const demoIds = new Set(demoQuestionIds as number[]);
@@ -55,8 +56,9 @@ export default function ConfirmPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-10 px-4">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen bg-slate-50 px-4">
+      <Header />
+      <div className="max-w-2xl mx-auto pb-10">
         <div className="bg-white rounded-2xl shadow-lg p-8">
           <h1 className="text-2xl font-bold text-gray-900 mb-6">제출 전 확인</h1>
 

@@ -9,6 +9,7 @@ import demoQuestionIds from "@/data/demoQuestionIds.json";
 import ProgressBar from "@/components/ProgressBar";
 import AreaTabs from "@/components/AreaTabs";
 import QuestionCard from "@/components/QuestionCard";
+import Image from "next/image";
 
 const allQuestions = questionsData as Question[];
 const demoIds = new Set(demoQuestionIds as number[]);
@@ -121,7 +122,7 @@ export default function AssessmentPage() {
               가이드
             </button>
             <h1 className="text-lg font-bold text-gray-900">ESG 수준진단</h1>
-            <div className="w-16" />
+            <Image src="/logo-ey.png" alt="EY한영" width={60} height={18} className="opacity-70" />
           </div>
           <ProgressBar answered={totalAnswered} total={questions.length} />
           <div className="mt-3">

@@ -10,6 +10,7 @@ import questionsData from "@/data/questions.json";
 import perspectivesData from "@/data/perspectives.json";
 import demoPerspectivesData from "@/data/demoPerspectives.json";
 import dynamic from "next/dynamic";
+import Header from "@/components/Header";
 
 const RadarChart = dynamic(() => import("@/components/RadarChart"), { ssr: false });
 
@@ -69,8 +70,9 @@ export default function ResultPage() {
   if (!authorized) return null;
 
   return (
-    <div className="min-h-screen bg-slate-50 py-10 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-slate-50 px-4">
+      <Header />
+      <div className="max-w-4xl mx-auto pb-10">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">ESG 수준진단 결과</h1>
