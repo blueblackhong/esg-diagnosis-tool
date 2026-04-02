@@ -64,3 +64,11 @@ export function calculateOverallScore(perspectiveScores: PerspectiveScore[]): nu
   const sum = perspectiveScores.reduce((acc, p) => acc + p.score, 0);
   return Math.round(sum / perspectiveScores.length);
 }
+
+export function getScoreColor(score: number): string {
+  if (score >= 90) return "#3b82f6";  // blue
+  if (score >= 70) return "#22c55e";  // green
+  if (score >= 50) return "#eab308";  // yellow
+  if (score >= 30) return "#f97316";  // orange
+  return "#ef4444";                    // red
+}

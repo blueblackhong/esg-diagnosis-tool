@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Question, Answer, Perspective } from "@/types";
-import { calculatePerspectiveScores, calculateOverallScore } from "@/lib/scoring";
+import { calculatePerspectiveScores, calculateOverallScore, getScoreColor } from "@/lib/scoring";
 import { getInsight } from "@/lib/insights";
 import questionsData from "@/data/questions.json";
 import perspectivesData from "@/data/perspectives.json";
@@ -116,7 +116,7 @@ export default function SampleResultPage() {
                     cy="60"
                     r="50"
                     fill="none"
-                    stroke="#059669"
+                    stroke={getScoreColor(overall)}
                     strokeWidth="10"
                     strokeLinecap="round"
                     strokeDasharray={`${overall * 3.14} ${314 - overall * 3.14}`}
@@ -125,7 +125,7 @@ export default function SampleResultPage() {
                   />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-3xl font-bold text-gray-900">{overall}점</span>
+                  <span className="text-3xl font-bold" style={{ color: getScoreColor(overall) }}>{overall}점</span>
                 </div>
               </div>
             </div>
